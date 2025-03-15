@@ -5,6 +5,7 @@ const links = [
   { label: 'Program', to: '/program' },
   { label: 'Contact', to: '/contact' }
 ];
+
 </script>
 <template class="">
     <footer class="w-full place-self-center bg-green-600 py-6 px-4">

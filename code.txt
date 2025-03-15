@@ -1,0 +1,15 @@
+const props = defineProps({
+  title: {
+    type: String,
+    default:'Sanatatea ta, pe primul loc!'
+  },
+  content: {
+    type: String,
+    default:'Medic Primar in Medicina de Familie, Jeanne Jane Doe'
+  },
+  src: {
+    type: String,
+    required: false,
+    default:'doctorWriting.png'
+  },
+});

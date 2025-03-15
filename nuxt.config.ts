@@ -6,7 +6,8 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxtjs/tailwindcss',
     '@nuxt/icon',
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
+    'nuxt-auth-utils',
   ],
   colorMode: {
     preference: 'light',
@@ -18,5 +19,25 @@ export default defineNuxtConfig({
     classSuffix: '-mode',
     storage: 'localStorage', // or 'sessionStorage' or 'cookie'
     storageKey: 'nuxt-color-mode'
+  },
+  nitro: {
+    experimental: {
+      database: true,
+    },
+    database: {
+      default: {
+        connector: "postgresql",
+        options: {
+          url: "postgresql://minotaurthegreat11:adabobby2003@localhost:5432/cmi_webapp",
+        },
+      },
+    },
+  },
+  auth: {
+    hash: {
+      scrypt: {
+        // See https://github.com/adonisjs/hash/blob/94637029cd526783ac0a763ec581306d98db2036/src/types.ts#L144
+      },
+    },
   },
 })
