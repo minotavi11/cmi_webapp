@@ -30,7 +30,7 @@ export default defineEventHandler(async (event) => {
           user: {
             id: user.id,
             email: user.email,
-            isAdmin: user.isAdmin || false, // folosește valoarea din DB sau implicit false
+            isAdmin: !!user.isAdmin, // folosește valoarea din DB sau implicit false
           },
         });
         return {};

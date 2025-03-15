@@ -2,7 +2,7 @@
   <div class="p-4">
     <h1 class="text-2xl font-bold mb-6">Panou de Administrare</h1>
     
-    <div v-if="user?.isAdmin">
+    <div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- Card pentru gestionarea utilizatorilor -->
         <div class="border rounded-lg p-4 bg-white shadow-sm">
@@ -31,10 +31,6 @@
           </UButton>
         </div>
       </div>
-    </div>
-    
-    <div v-else class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-      Nu ai permisiuni de administrator pentru a accesa această pagină.
     </div>
   </div>
 </template>
