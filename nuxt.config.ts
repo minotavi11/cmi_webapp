@@ -7,8 +7,26 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxt/icon',
     '@nuxtjs/color-mode',
+<<<<<<< Updated upstream
     'nuxt-auth-utils',
+=======
+    '@nuxthub/core',
+    '@nuxthub/database',
+>>>>>>> Stashed changes
   ],
+  nitro: {
+    experimental: {
+      database: true,
+    },
+    database: {
+      default: {
+        connector: "postgresql",
+        options: {
+          url: "postgresql://postgres:postgres@localhost:5432/postgres",
+        },
+      },
+    },
+  },
   colorMode: {
     preference: 'light',
     fallback: 'light', // fallback value if not system preference found
