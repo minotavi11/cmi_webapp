@@ -32,14 +32,23 @@ async function logout() {
         Sign up
       </UButton>
     </div>
-    <div v-if="user" class="flex items-center space-x-4">
-      <NuxtLink to="/account" class="text-green-600 font-medium hover:underline">
-        Profil
-      </NuxtLink>
-      <UButton  @click="logout" color="primary">
-              Logout
-            </UButton>
-    </div>
+    <div v-if="user && !user.isAdmin" class="flex items-center space-x-4">
+  <NuxtLink to="/account" class="text-green-600 font-medium hover:underline">
+    Profil
+  </NuxtLink>
+  <UButton @click="logout" color="primary">
+    Logout
+  </UButton>
+</div>
+<div v-if="user && user.isAdmin" class="flex items-center space-x-4">
+  <NuxtLink to="/admin" class="text-green-600 font-medium hover:underline">
+    Panou de Administrator
+  </NuxtLink>
+  <UButton @click="logout" color="primary">
+    Logout
+  </UButton>
+</div>
+
   </nav>
 </template>
 
