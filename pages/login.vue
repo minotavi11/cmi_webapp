@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import type { FormError, FormSubmitEvent } from '#ui/types'
+
+// Define toast and loading state
+const toast = useToast();
+const isLoading = ref(false);
+
 // Define props
 const props = defineProps({
   title: {
@@ -17,12 +22,17 @@ const props = defineProps({
   },
 });
 
+// Get user session refresh function
+const { fetch: refreshSession } = useUserSession();
+
+// Create reactive state for form
 const state = reactive({
-  email: undefined,
-  password: undefined,
+  email: '',
+  password: '',
   rememberMe: false
 })
 
+// Form validation function
 const validate = (state: any): FormError[] => {
   const errors = []
   if (!state.email) errors.push({ path: 'email', message: 'Email obligatoriu' })
@@ -30,9 +40,43 @@ const validate = (state: any): FormError[] => {
   return errors
 }
 
+// Form submission handler
 async function onSubmit(event: FormSubmitEvent<any>) {
-  // Do something with data
-  console.log(event.data)
+  try {
+    isLoading.value = true;
+
+    // Send login request to API
+    const response = await $fetch("/api/auth/login", {
+      method: "POST",
+      body: {
+        email: state.email,
+        password: state.password,
+        remember: state.rememberMe
+      },
+    });
+
+    // Show success message
+    toast.add({
+      title: "Succes!",
+      description: "Te-ai conectat cu succes.",
+      color: "green",
+    });
+
+    // Refresh user session and redirect to protected area
+    await refreshSession();
+    await navigateTo("/account");
+    
+  } catch (error) {
+    // Show error message
+    toast.add({
+      title: "Eroare",
+      description: error.data?.message || "A apărut o eroare la conectare.",
+      color: "red",
+    });
+  } finally {
+    // Reset loading state
+    isLoading.value = false;
+  }
 }
 </script>
 
